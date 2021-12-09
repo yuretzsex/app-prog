@@ -1,11 +1,22 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, TIMESTAMP, text, JSON
 from sqlalchemy.dialects.mysql import INTEGER
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Table, Text, PrimaryKeyConstraint, VARCHAR
-from sqlalchemy.orm import relationship
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    ForeignKey,
+    Date,
+    Table,
+    Text,
+    PrimaryKeyConstraint,
+    VARCHAR,
+    create_engine)
+from sqlalchemy.orm import relationship, sessionmaker
 
 Base = declarative_base()
-
+engine = create_engine("mysql://root:12345@localhost/aplabs")
+Session = sessionmaker(bind=engine)
 
 class User(Base):
     __tablename__ = 'user'
